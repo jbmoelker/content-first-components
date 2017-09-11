@@ -1,0 +1,29 @@
+{
+  "name": "content-first-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prebuild:data": "rimraf data/",
+    "build:data": "node ./lib/dump-data.js",
+    "start": "PORT=26868 nodemon --watch server.js ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jasper Moelker <jasper@voorhoede.nl> (https://voorhoede.nl/)",
+  "license": "MIT",
+  "dependencies": {
+    "datocms-client": "0.3.27",
+    "dotenv": "4.0.0",
+    "express": "4.15.4",
+    "isomorphic-fetch": "2.2.1",
+    "next": "3.2.2",
+    "nodemon": "1.12.0",
+    "query-string": "5.0.0",
+    "react": "15.6.1",
+    "react-dom": "15.6.1"
+  },
+  "devDependencies": {
+    "rimraf": "2.6.2"
+  }
+}
