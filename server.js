@@ -1,7 +1,8 @@
+const dataLoader = require('./lib/data-loader')
 const express = require('express')
 const next = require('next')
-const loadData = require('./lib/load-data')
-const reloadData = require('./lib/reload-data')
+// const loadData = require('./lib/data-loader/load-data')
+// const reloadData = require('./lib/data-loader/reload-data')
 
 require('dotenv').config()
 
@@ -12,19 +13,15 @@ const reloadToken = process.env.DATA_RELOAD_TOKEN
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-Promise.all([
-  loadData(),
-  app.prepare(),
-])
-.then(([ data ]) => {
+app.prepare()
+.then(() => {
   const server = express()
 
   server.post('/api/reload-data/:token', (req, res) => {
     if (reloadToken && reloadToken === req.params.token) {
-      reloadData()
+      dataLoader.reload()
         .then(newData => {
-          data = newData
-          res.json(data)
+          res.json(newData)
           console.log('Data reloaded.')
         })
         .catch(error => {
@@ -37,13 +34,15 @@ Promise.all([
   })
 
   server.get('/api/pages/', (req, res) => {
-    res.json(data.pages)
+    dataLoader.load('pages')
+      .then(pages => res.json(pages))
   })
 
   server.get('/api/pages/:slug', (req, res) => {
     const slug = req.params.slug
-    const page = data.pages.find(page => page.slug === slug)
-    res.json(page)
+    dataLoader.load('pages')
+      .then(pages => pages.find(page => page.slug === slug))
+      .then(page => res.json(page))
   })
 
   server.get('/pages/:slug', (req, res) => {

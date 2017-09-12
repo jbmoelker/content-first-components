@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prebuild:data": "rimraf data/",
-    "build:data": "node ./lib/dump-data.js",
+    "build:data": "bin/dump-data.js",
     "start": "PORT=26868 nodemon --watch server.js ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +24,7 @@
     "react-dom": "15.6.1"
   },
   "devDependencies": {
+    "chalk": "2.1.0",
     "rimraf": "2.6.2"
   }
 }
