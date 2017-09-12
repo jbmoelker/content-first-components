@@ -20,7 +20,7 @@ app.prepare()
       dataLoader.reload()
         .then(newData => {
           res.json(newData)
-          console.log('Data reloaded.', req.headers)
+          console.log('Data reloaded.')
         })
         .catch(error => {
           res.status(500).json({ status: 'Error loading data.' })
