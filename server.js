@@ -1,8 +1,6 @@
 const dataLoader = require('./lib/data-loader')
 const express = require('express')
 const next = require('next')
-// const loadData = require('./lib/data-loader/load-data')
-// const reloadData = require('./lib/data-loader/reload-data')
 
 require('dotenv').config()
 
@@ -22,7 +20,7 @@ app.prepare()
       dataLoader.reload()
         .then(newData => {
           res.json(newData)
-          console.log('Data reloaded.')
+          console.log('Data reloaded.', req.headers)
         })
         .catch(error => {
           res.status(500).json({ status: 'Error loading data.' })

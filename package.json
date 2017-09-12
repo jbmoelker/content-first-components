@@ -6,6 +6,7 @@
   "scripts": {
     "prebuild:data": "rimraf data/",
     "build:data": "bin/dump-data.js",
+    "proxy": "ngrok http 26868",
     "start": "PORT=26868 nodemon --watch server.js ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "datocms-client": "0.3.27",
+    "delay": "2.0.0",
     "dotenv": "4.0.0",
     "express": "4.15.4",
     "isomorphic-fetch": "2.2.1",
@@ -25,6 +27,7 @@
   },
   "devDependencies": {
     "chalk": "2.1.0",
+    "ngrok": "2.2.22",
     "rimraf": "2.6.2"
   }
 }
