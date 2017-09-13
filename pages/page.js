@@ -1,8 +1,10 @@
 import 'isomorphic-fetch'
 import Content from '../components/content'
+import Link from 'next/link'
 
 const Page = ({ page }) => (
   <article>
+    <Link href="/"><a>Home</a></Link>
     <h1>{ page.title }</h1>
     <Content items={ page.content } />
   </article>
