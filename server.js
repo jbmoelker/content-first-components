@@ -21,4 +21,8 @@ server.use('/api', apiRouter)
 server.get('/pages/:slug', (req, res) => app.render(req, res, '/page', { slug: req.params.slug }))
 server.get('*', app.getRequestHandler())
 
-app.prepare().then(startServer)
+Promise.all([
+    app.prepare(),
+    dataLoader.load(),
+  ])
+  .then(startServer)

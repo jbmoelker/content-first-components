@@ -1,8 +1,5 @@
-const path = require('path')
-const dir = `data/`
-
 module.exports = (dato, root, i18n) => {
-  root.createDataFile(path.join(dir, `pages.json`), 'json', itemsToJson(dato.pages))
+  root.createDataFile('pages.json', 'json', itemsToJson(dato.pages))
 }
 
 function itemsToJson (items) {
